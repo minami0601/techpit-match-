@@ -2,42 +2,24 @@
 
 @section('content')
 <div class="row my-5">
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Featured
+  @foreach ($articles as $article)
+    @php
+        $user=$article->user;
+    @endphp
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          {{$user->name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{$article->title}}</h5>
+          <p class="card-text">{{$article->summary}}</p>
+          <a href="#" class="btn btn-primary">more</a>
+          <span class="ml-5 text-end">{{$categories[$article->category_id]}}</span>
+        </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Featured
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Featured
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
+    </div> 
+  @endforeach
 </div>
 
 @endsection
