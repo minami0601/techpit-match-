@@ -11,7 +11,7 @@ use App\Category;
 class ArticlesController extends Controller
 {
     public function index() {
-        $articles = Article::orderBy('id','desc')->paginate(9);
+        $articles = Article::orderBy('id','desc')->paginate(6);
         $categories = Category::orderBy('id','asc')->pluck('name', 'id');
         
         $data = [
@@ -52,6 +52,18 @@ class ArticlesController extends Controller
             'summary' => $request->summary,
         ]);
 
-        return back('/');
+        return redirect ('/');
+    }
+    public function show($id)
+    {
+        $article = Article::where('id', $id)->first();
+        $categories = Category::orderBy('id','asc')->pluck('name', 'id');
+        
+        $data = [
+            'article' => $article,
+            'categories' => $categories
+        ];
+
+        return view('articles.show', $data);
     }
 }
