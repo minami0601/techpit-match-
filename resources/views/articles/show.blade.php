@@ -2,11 +2,10 @@
 
 @section('content')
 <div class="row my-5">
-  @foreach ($articles as $article)
     @php
         $user=$article->user;
     @endphp
-    <div class="col-4">
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
           {{$user->name}}
@@ -14,12 +13,13 @@
         <div class="card-body">
           <h5 class="card-title">{{$article->title}}</h5>
           <p class="card-text">{{$article->summary}}</p>
-          <a href="{{ route('show', ['id' => $article->id ]) }}" class="btn btn-primary">more</a>
-          <span class="ml-5 text-end">{{$categories[$article->category_id]}}</span>
+          <span class="ml-5 text-end">#{{$categories[$article->category_id]}}</span>
         </div>
       </div>
     </div> 
-  @endforeach
 </div>
-{{ $articles->links() }}
+<div>
+  <a href="/" class="btn btn-primary text-center">一覧ページ</a>
+</div>
+
 @endsection
